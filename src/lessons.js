@@ -12,6 +12,15 @@ const lessons = [
     summary: "What JavaScript is, and the tools you'll use to write it.",
     recap:
       "You don't need to memorize the spec or master every editor feature before moving on — just know that the console is where you'll spend a lot of time checking your work, in this app and in real projects alike.",
+    practice: {
+      prompt:
+        "Use console.log to print your name, your age, and whether you're enjoying this so far — three separate log lines.",
+      starterCode: `// Try it yourself:
+// 1. Log your name
+// 2. Log your age
+// 3. Log true or false for "enjoying this so far"
+`,
+    },
     blocks: [
       {
         type: "text",
@@ -53,6 +62,16 @@ console.log({ works: true });`,
     summary: "The core building blocks: variables, values, and control flow.",
     recap:
       "This lesson is the densest one, because it's where almost everything else builds from. If a topic here still feels shaky, it's worth revisiting before pushing on — variables, conditionals, and functions show up in literally every lesson that follows.",
+    practice: {
+      prompt:
+        "Write a function called `isAdult` that takes an age and returns true if it's 18 or over, false otherwise. Test it with a few different ages.",
+      starterCode: `function isAdult(age) {
+  // your code here
+}
+
+console.log(isAdult(20));
+console.log(isAdult(15));`,
+    },
     blocks: [
       {
         type: "text",
@@ -197,6 +216,16 @@ for (let i = 1; i <= 5; i++) {
     summary: "Habits and tools that make code easier to trust and maintain.",
     recap:
       "Code quality isn't a separate skill from writing code — it's what separates code you can still understand a month from now from code you can't. Debugging tools and a consistent style pay for themselves almost immediately.",
+    practice: {
+      prompt:
+        "Take this messy function and clean it up: rename the variables to something clearer, and add one comment explaining *why* it works, not what it does.",
+      starterCode: `function f(a, b) {
+  let c = a > b ? a : b;
+  return c;
+}
+
+console.log(f(4, 9));`,
+    },
     blocks: [
       {
         type: "text",
@@ -258,6 +287,18 @@ total([10, 20, 30]);`,
     summary: "How JavaScript represents structured, real-world data.",
     recap:
       "Objects are the workhorse of JavaScript — almost everything beyond a simple number or string ends up represented as one. Understanding that they're passed by reference, not copied, is the detail that prevents the most confusing bugs later on.",
+    practice: {
+      prompt:
+        "Create an object representing a book (title, author, year). Write a method on it called `summary()` that returns a sentence describing the book using those properties.",
+      starterCode: `const book = {
+  title: "",
+  author: "",
+  year: 0,
+  // add a summary() method here
+};
+
+console.log(book.summary());`,
+    },
     blocks: [
       {
         type: "text",
@@ -332,6 +373,17 @@ console.log(user.introduce());`,
     summary: "A closer look at strings, numbers, arrays, and the collections built on top of them.",
     recap:
       "Arrays and their methods (`map`, `filter`, `reduce`) will likely be what you reach for most often day to day. Map and Set are worth knowing exist even before you need them — they solve specific problems plain objects and arrays handle awkwardly.",
+    practice: {
+      prompt:
+        "Given the array of numbers below, use array methods to get: only the numbers greater than 10, and the sum of all numbers in the array.",
+      starterCode: `const numbers = [4, 15, 8, 23, 1, 19];
+
+// numbers greater than 10:
+
+
+// sum of all numbers:
+`,
+    },
     blocks: [
       {
         type: "text",
@@ -436,6 +488,21 @@ console.log(scores.get("Ada"));`,
     summary: "Scope, closures, and the less obvious behavior of functions.",
     recap:
       "Closures are the concept most worth sitting with here — once it clicks, a lot of JavaScript patterns you'll see elsewhere (including in React, if you go that direction) suddenly make a lot more sense.",
+    practice: {
+      prompt:
+        "Write a function `makeBankAccount(startingBalance)` that returns an object with `deposit(amount)` and `getBalance()` methods, using a closure to keep the balance private.",
+      starterCode: `function makeBankAccount(startingBalance) {
+  let balance = startingBalance;
+
+  return {
+    // add deposit and getBalance here
+  };
+}
+
+const account = makeBankAccount(100);
+account.deposit(50);
+console.log(account.getBalance());`,
+    },
     blocks: [
       {
         type: "text",
@@ -531,6 +598,17 @@ console.log(counter()); // 3 — count is remembered between calls`,
     summary: "Fine-grained control over how object properties behave.",
     recap:
       "This is a more niche corner of the language — most day-to-day code never touches property descriptors directly. But knowing they exist explains behavior you'll eventually see in libraries and frameworks that use them under the hood.",
+    practice: {
+      prompt:
+        "Add a getter called `area` to this rectangle object that computes width times height on the fly, without storing it as its own property.",
+      starterCode: `const rectangle = {
+  width: 4,
+  height: 6,
+  // add a get area() here
+};
+
+console.log(rectangle.area);`,
+    },
     blocks: [
       {
         type: "text",
@@ -574,6 +652,18 @@ console.log(person.firstName, person.lastName);`,
     summary: "How objects in JavaScript share behavior with each other.",
     recap:
       "Prototypes are what class syntax is quietly built on top of — you don't need to think about them constantly, but understanding the underlying mechanism makes class behavior (especially inheritance) feel far less like magic.",
+    practice: {
+      prompt:
+        "Create a `vehicle` object with a `honk()` method. Use `Object.create` to make a `car` object that inherits from it, then call `honk()` on the car.",
+      starterCode: `const vehicle = {
+  honk() {
+    return "Beep!";
+  },
+};
+
+const car = Object.create(vehicle);
+console.log(car.honk());`,
+    },
     blocks: [
       {
         type: "text",
@@ -627,6 +717,20 @@ console.log(rabbit.describe()); // method inherited too`,
     summary: "A cleaner syntax for building objects with shared structure and behavior.",
     recap:
       "Classes don't add new capability to JavaScript so much as make the existing prototype system easier to read and write. If prototypes felt confusing in the last lesson, classes are usually the more approachable way most real code actually uses that same mechanism.",
+    practice: {
+      prompt:
+        "Write a `Shape` class with a constructor that takes a name, and a `describe()` method. Then write a `Circle` class that extends it and adds a `radius` property.",
+      starterCode: `class Shape {
+  // constructor and describe() here
+}
+
+class Circle extends Shape {
+  // add radius here
+}
+
+const c = new Circle("circle", 5);
+console.log(c.describe());`,
+    },
     blocks: [
       {
         type: "text",
@@ -703,6 +807,16 @@ console.log(new Dog("Rex").speak());`,
     summary: "Catching and responding to things going wrong.",
     recap:
       "Even a simple `try...catch` around code that might fail — a network request, parsing unpredictable data — is often enough to keep one bad case from crashing the whole page. Custom errors become more useful once your app grows past the basics.",
+    practice: {
+      prompt:
+        "Write a function `safeDivide(a, b)` that returns the result of a divided by b, but catches the case where b is 0 and logs a friendly error message instead of crashing.",
+      starterCode: `function safeDivide(a, b) {
+  // your code here
+}
+
+console.log(safeDivide(10, 2));
+console.log(safeDivide(10, 0));`,
+    },
     blocks: [
       {
         type: "text",
@@ -745,6 +859,19 @@ console.log(parseAge("\\"thirty\\""));`,
     summary: "Working with operations that take time to complete.",
     recap:
       "This is one of the topics worth revisiting more than once — the mental model takes a bit to fully click. Once it does, async/await becomes the default way you'll write almost any code that talks to a server.",
+    practice: {
+      prompt:
+        "Write an async function `getUser()` that waits 300ms (using the wait helper below) and then returns an object like { name: \"Ada\" }. Log the result after awaiting it.",
+      starterCode: `function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function getUser() {
+  // your code here
+}
+
+getUser().then((user) => console.log(user));`,
+    },
     blocks: [
       {
         type: "text",
@@ -821,6 +948,17 @@ run();`,
     summary: "Functions that can pause and resume, producing values over time.",
     recap:
       "Generators are less common in everyday code than the rest of this syllabus, but they show up under the hood of some libraries and are worth recognizing even if you don't reach for them often yourself.",
+    practice: {
+      prompt:
+        "Write a generator function `evenNumbers(max)` that yields every even number from 2 up to max. Loop over it with for...of and log each value.",
+      starterCode: `function* evenNumbers(max) {
+  // your code here
+}
+
+for (const n of evenNumbers(10)) {
+  console.log(n);
+}`,
+    },
     blocks: [
       {
         type: "text",
@@ -859,6 +997,18 @@ for (const n of countTo(4)) {
     summary: "Splitting code across files and sharing pieces between them.",
     recap:
       "Every file in this very app — the lesson data, the snippet library, the playground component — is its own module, imported wherever it's needed. As your own projects grow, splitting things up the same way keeps each piece small enough to reason about.",
+    practice: {
+      prompt:
+        "This playground can only run one file, so write it as comments: sketch out a math.js file that exports a subtract function, and an app.js that imports and uses it.",
+      starterCode: `// math.js
+// export function subtract(a, b) { ... }
+
+// app.js
+// import { subtract } from "./math.js";
+// console.log(subtract(10, 4));
+
+console.log("Fill in the comments above with your own version");`,
+    },
     blocks: [
       {
         type: "text",
@@ -904,6 +1054,16 @@ console.log("add(2, 3) would be 5, PI would be 3.14159");`,
     summary: "A handful of more specialized tools and language corners.",
     recap:
       "You've now covered the entire map — from your first variable to the language's more specialized corners. None of these last few topics come up daily, but recognizing them means you won't be caught off guard when they do.",
+    practice: {
+      prompt:
+        "Using the currying pattern from earlier lessons, write a function `greetIn(language)` that returns a function taking a name and returning a greeting in that language.",
+      starterCode: `function greetIn(language) {
+  // your code here
+}
+
+const greetInEnglish = greetIn("English");
+console.log(greetInEnglish("Ada")); // e.g. "Hello, Ada"`,
+    },
     blocks: [
       {
         type: "text",
