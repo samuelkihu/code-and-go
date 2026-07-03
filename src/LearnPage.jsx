@@ -19,7 +19,7 @@ export default function LearnPage() {
         The syllabus
       </h1>
       <p className="mt-2 text-[15px] max-w-2xl mb-10" style={{ color: "#4A5248" }}>
-        Fourteen lessons, laid out in order  from your first look at a code
+        Fourteen lessons, laid out in order — from your first look at a code
         editor all the way through classes, promises, and the more
         specialized corners of the language. Each one groups a set of
         related topics with a short note on every one, so you can read it
@@ -33,9 +33,9 @@ export default function LearnPage() {
             onClick={() => navigate(`/learn/${lesson.id}`)}
             className="text-left flex items-center justify-between gap-4 px-6 py-5 rounded-xl transition-transform duration-200 hover:-translate-y-0.5"
             style={{
-              background: "#ffffff",
-              border: "1px solid #f8f8f4",
-              boxShadow: "0 1px 0 #ffffff",
+              background: "var(--bg-card)",
+              border: "1px solid var(--border-card)",
+              boxShadow: "0 1px 0 var(--border-card)",
             }}
           >
             <div className="flex items-center gap-5">
@@ -80,7 +80,7 @@ export default function LearnPage() {
         <div className="grid sm:grid-cols-3 gap-5">
           <div
             className="px-5 py-5 rounded-xl"
-            style={{ background: "#ffffff", border: "1px solid #ece9e2" }}
+            style={{ background: "var(--bg-card)", border: "1px solid var(--border-card)" }}
           >
             <div
               className="w-7 h-7 rounded-full flex items-center justify-center font-mono text-[12px] mb-3"
@@ -103,7 +103,7 @@ export default function LearnPage() {
 
           <div
             className="px-5 py-5 rounded-xl"
-            style={{background: "#ffffff", border: "1px solid #ece9e2" }}
+            style={{ background: "var(--bg-card)", border: "1px solid var(--border-card)" }}
           >
             <div
               className="w-7 h-7 rounded-full flex items-center justify-center font-mono text-[12px] mb-3"
@@ -118,8 +118,8 @@ export default function LearnPage() {
               Browse the snippets
             </h4>
             <p className="text-[13px] leading-relaxed" style={{ color: "#4A5248" }}>
-              See these same ideas as real, working code  across more
-              languages than just JavaScript  and pick up external
+              See these same ideas as real, working code — across more
+              languages than just JavaScript — and pick up external
               resources if you want to go even deeper on something.
             </p>
           </div>
@@ -141,7 +141,7 @@ export default function LearnPage() {
               Build in the Playground
             </h4>
             <p className="text-[13px] leading-relaxed" style={{ color: "#B9CFC8" }}>
-              This is where lessons and snippets stop being separate things 
+              This is where lessons and snippets stop being separate things —
               combine what you've learned with what you've borrowed, and
               write something of your own from scratch.
             </p>
