@@ -117,7 +117,7 @@ export default function LessonPage() {
           <button
             onClick={() => navigate(`/learn/${prevLesson.id}`)}
             className="text-left px-5 py-4 rounded-xl"
-            style={{ background: "#FBF8F1", border: "1px solid #DCD4C2" }}
+            style={{ background: "var(--bg-card)", border: "1px solid var(--border-card)" }}
           >
             <div
               className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest mb-1"
@@ -136,7 +136,7 @@ export default function LessonPage() {
           <Link
             to="/learn"
             className="text-left px-5 py-4 rounded-xl"
-            style={{ background: "#FBF8F1", border: "1px solid #DCD4C2" }}
+            style={{ background: "var(--bg-card)", border: "1px solid var(--border-card)" }}
           >
             <div
               className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest mb-1"
