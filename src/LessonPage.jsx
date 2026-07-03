@@ -97,57 +97,46 @@ export default function LessonPage() {
       {lesson.recap && (
         <div
           className="mt-14 px-6 py-5 rounded-xl"
-          style={{ background: "#1B4B43", border: "1px solid #1B4B43" }}
+          style={{ background: "#FFFFFF", border: "1px solid #1F2421" }}
         >
           <p
             className="font-mono text-[11px] uppercase tracking-widest mb-2"
-            style={{ color: "#B9CFC8" }}
+            style={{ color: "#1F2421" }}
           >
             Takeaway
           </p>
-          <p className="text-[15px] leading-relaxed" style={{ color: "#FFFFFF" }}>
+          <p className="text-[15px] leading-relaxed" style={{ color: "#1F2421" }}>
             {lesson.recap}
           </p>
         </div>
       )}
 
       {/* ---------------- Prev / Next ---------------- */}
-      <div className="mt-8 grid sm:grid-cols-2 gap-4">
+      <div className="mt-8 flex items-center justify-between gap-4">
         {prevLesson ? (
           <button
             onClick={() => navigate(`/learn/${prevLesson.id}`)}
-            className="text-left px-5 py-4 rounded-xl"
-            style={{ background: "var(--bg-card)", border: "1px solid var(--border-card)" }}
+            className="text-left"
           >
             <div
-              className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest mb-1"
+              className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest mb-0.5"
               style={{ color: "#8A8270" }}
             >
               <ArrowLeft size={12} /> Previous
             </div>
-            <div
-              className="text-[16px]"
-              style={{ fontFamily: "'Fraunces', serif", fontWeight: 600, color: "#1F2421" }}
-            >
+            <div className="text-[14px]" style={{ color: "#1F2421" }}>
               {prevLesson.title}
             </div>
           </button>
         ) : (
-          <Link
-            to="/learn"
-            className="text-left px-5 py-4 rounded-xl"
-            style={{ background: "var(--bg-card)", border: "1px solid var(--border-card)" }}
-          >
+          <Link to="/learn" className="text-left">
             <div
-              className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest mb-1"
+              className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-widest mb-0.5"
               style={{ color: "#8A8270" }}
             >
               <ArrowLeft size={12} /> Back
             </div>
-            <div
-              className="text-[16px]"
-              style={{ fontFamily: "'Fraunces', serif", fontWeight: 600, color: "#1F2421" }}
-            >
+            <div className="text-[14px]" style={{ color: "#1F2421" }}>
               The syllabus
             </div>
           </Link>
@@ -156,38 +145,27 @@ export default function LessonPage() {
         {nextLesson ? (
           <button
             onClick={() => navigate(`/learn/${nextLesson.id}`)}
-            className="text-right px-5 py-4 rounded-xl"
-            style={{ background: "#1B4B43", border: "1px solid #1B4B43" }}
+            className="text-right"
           >
             <div
-              className="flex items-center justify-end gap-1.5 font-mono text-[11px] uppercase tracking-widest mb-1"
-              style={{ color: "#B9CFC8" }}
+              className="flex items-center justify-end gap-1.5 font-mono text-[11px] uppercase tracking-widest mb-0.5"
+              style={{ color: "#8A8270" }}
             >
               Next <ArrowRight size={12} />
             </div>
-            <div
-              className="text-[16px]"
-              style={{ fontFamily: "'Fraunces', serif", fontWeight: 600, color: "#EFE9DE" }}
-            >
+            <div className="text-[14px]" style={{ color: "#1F2421" }}>
               {nextLesson.title}
             </div>
           </button>
         ) : (
-          <Link
-            to="/snippets"
-            className="text-right px-5 py-4 rounded-xl"
-            style={{ background: "#1B4B43", border: "1px solid #1B4B43" }}
-          >
+          <Link to="/snippets" className="text-right">
             <div
-              className="flex items-center justify-end gap-1.5 font-mono text-[11px] uppercase tracking-widest mb-1"
-              style={{ color: "#B9CFC8" }}
+              className="flex items-center justify-end gap-1.5 font-mono text-[11px] uppercase tracking-widest mb-0.5"
+              style={{ color: "#8A8270" }}
             >
               Done <ArrowRight size={12} />
             </div>
-            <div
-              className="text-[16px]"
-              style={{ fontFamily: "'Fraunces', serif", fontWeight: 600, color: "#EFE9DE" }}
-            >
+            <div className="text-[14px]" style={{ color: "#1F2421" }}>
               Browse snippets
             </div>
           </Link>
