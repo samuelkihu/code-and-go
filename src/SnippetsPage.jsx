@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Search, Copy, Check, Terminal, ExternalLink } from "lucide-react";
 import snippets from "./snippets";
 import { highlightForLanguage, TOKEN_STYLES } from "./prismSetup";
@@ -71,7 +72,7 @@ function SnippetRow({ snippet, active, onClick }) {
       onClick={onClick}
       className="w-full text-left px-5 py-4 rounded-lg transition-colors"
       style={{
-        background: active ? "#ffffff" : "transparent",
+        background: active ? "#FBF8F1" : "transparent",
         border: active ? "1px solid #DCD4C2" : "1px solid transparent",
       }}
     >
@@ -103,7 +104,7 @@ function DetailPanel({ snippet }) {
     return (
       <div
         className="h-full flex flex-col items-center justify-center text-center px-8 py-20 rounded-xl"
-        style={{ background: "#ffffff", border: "1px dashed #C7BCA3" }}
+        style={{ background: "#FBF8F1", border: "1px dashed #C7BCA3" }}
       >
         <Terminal size={22} style={{ color: "#8A8270" }} />
         <p className="mt-3 font-mono text-[13px]" style={{ color: "#8A8270" }}>
@@ -180,9 +181,17 @@ function DetailPanel({ snippet }) {
 }
 
 export default function SnippetsPage() {
-  const [query, setQuery] = useState("");
+  const [searchParams] = useSearchParams();
+  const initialQuery = searchParams.get("q") || "";
+  const matchedById = snippets.find(
+    (s) => s.title.toLowerCase() === initialQuery.toLowerCase()
+  );
+
+  const [query, setQuery] = useState(initialQuery);
   const [language, setLanguage] = useState("All");
-  const [selectedId, setSelectedId] = useState(snippets[0]?.id ?? null);
+  const [selectedId, setSelectedId] = useState(
+    matchedById?.id ?? snippets[0]?.id ?? null
+  );
 
   const filtered = useMemo(() => {
     return snippets.filter((s) => {
@@ -213,7 +222,7 @@ export default function SnippetsPage() {
       </h1>
       <p className="mt-2 text-[15px] max-w-2xl mb-8" style={{ color: "#4A5248" }}>
         Over twenty working snippets across JavaScript, React, Python, CSS,
-        HTML, SQL, and Git  search by name, tag, or description, filter by
+        HTML, SQL, and Git — search by name, tag, or description, filter by
         language in the sidebar, and copy anything straight into your own
         project. Every snippet includes a short explanation of what it does
         and why you'd reach for it.
@@ -223,7 +232,7 @@ export default function SnippetsPage() {
         {/* ---------------- Sidebar: filters ---------------- */}
         <aside
           className="rounded-xl p-3"
-          style={{ background: "#fefefe", border: "1px solid #ece7df" }}
+          style={{ background: "#FBF8F1", border: "1px solid #DCD4C2" }}
         >
           <p
             className="px-3 pt-2 pb-3 font-mono text-[11px] uppercase tracking-widest"
@@ -247,7 +256,7 @@ export default function SnippetsPage() {
         <div>
           <div
             className="flex items-center gap-2 mb-4 px-4 py-2.5 rounded-md"
-            style={{ background: "#f7f5f1", border: "1px solid #DCD4C2" }}
+            style={{ background: "#FBF8F1", border: "1px solid #DCD4C2" }}
           >
             <Search size={15} style={{ color: "#8A8270" }} />
             <input
@@ -291,7 +300,7 @@ export default function SnippetsPage() {
         <p className="text-[15px] leading-relaxed max-w-2xl mb-6" style={{ color: "#4A5248" }}>
           This drawer is meant for quick reference, not a full course. When
           you want to go deeper on something, these are solid places to
-          continue your learning , a mix of reference docs, free courses, and video
+          continue — a mix of reference docs, free courses, and video
           explainers.
         </p>
 
@@ -303,12 +312,12 @@ export default function SnippetsPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="block px-5 py-4 rounded-xl transition-transform duration-200 hover:-translate-y-0.5"
-              style={{ background: "#ffffff", border: "1px solid #eeebe5" }}
+              style={{ background: "#FBF8F1", border: "1px solid #DCD4C2" }}
             >
               <div className="flex items-center justify-between gap-2 mb-1.5">
                 <span
                   className="font-mono text-[11px] px-2 py-0.5 rounded"
-                  style={{ background: "#ffffff", color: "#1B4B43" }}
+                  style={{ background: "#DCD4C2", color: "#1B4B43" }}
                 >
                   {res.type}
                 </span>
