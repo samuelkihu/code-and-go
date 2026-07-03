@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Search, Copy, Check, Terminal, ExternalLink } from "lucide-react";
+import { useSearchParams, Link } from "react-router-dom";
+import { Search, Copy, Check, Terminal, ExternalLink, GraduationCap, ArrowRight } from "lucide-react";
 import snippets from "./snippets";
+import lessons from "./lessons";
 import { highlightForLanguage, TOKEN_STYLES } from "./prismSetup";
 
 const EXTERNAL_RESOURCES = [
@@ -176,6 +177,27 @@ function DetailPanel({ snippet }) {
           }}
         />
       </div>
+
+      {snippet.relatedLesson && (
+        <Link
+          to={`/learn/${snippet.relatedLesson}`}
+          className="mt-4 flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-transform duration-200 hover:-translate-y-0.5"
+          style={{ background: "#FBF8F1", border: "1px solid #DCD4C2" }}
+        >
+          <div className="flex items-center gap-3">
+            <GraduationCap size={16} style={{ color: "#1B4B43" }} />
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-widest" style={{ color: "#8A8270" }}>
+                Related lesson
+              </div>
+              <div className="text-[14px]" style={{ fontFamily: "'Fraunces', serif", fontWeight: 600, color: "#1F2421" }}>
+                {lessons.find((l) => l.id === snippet.relatedLesson)?.title}
+              </div>
+            </div>
+          </div>
+          <ArrowRight size={14} style={{ color: "#1B4B43" }} />
+        </Link>
+      )}
     </div>
   );
 }
