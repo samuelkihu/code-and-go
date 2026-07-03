@@ -105,7 +105,7 @@ export default function LessonPage() {
           >
             Takeaway
           </p>
-          <p className="text-[15px] leading-relaxed" style={{ color: "#EFE9DE" }}>
+          <p className="text-[15px] leading-relaxed" style={{ color: "#FFFFFF" }}>
             {lesson.recap}
           </p>
         </div>
