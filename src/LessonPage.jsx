@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Pencil } from "lucide-react";
 import lessons from "./lessons";
 import CodePlayground from "./CodePlayground";
 
@@ -75,6 +75,24 @@ export default function LessonPage() {
           return <CodePlayground key={i} initialCode={block.code} height={180} />;
         })}
       </div>
+
+      {lesson.practice && (
+        <div className="mt-14">
+          <div className="flex items-center gap-2 mb-3">
+            <Pencil size={15} style={{ color: "#C97B2E" }} />
+            <span
+              className="font-mono text-[11px] uppercase tracking-widest"
+              style={{ color: "#C97B2E" }}
+            >
+              Try it yourself
+            </span>
+          </div>
+          <p className="text-[15px] leading-relaxed mb-4" style={{ color: "#1F2421" }}>
+            {lesson.practice.prompt}
+          </p>
+          <CodePlayground initialCode={lesson.practice.starterCode} height={180} />
+        </div>
+      )}
 
       {lesson.recap && (
         <div
