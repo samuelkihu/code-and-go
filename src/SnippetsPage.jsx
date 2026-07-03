@@ -73,8 +73,8 @@ function SnippetRow({ snippet, active, onClick }) {
       onClick={onClick}
       className="w-full text-left px-5 py-4 rounded-lg transition-colors"
       style={{
-        background: active ? "#FBF8F1" : "transparent",
-        border: active ? "1px solid #DCD4C2" : "1px solid transparent",
+        background: active ? "var(--bg-card)" : "transparent",
+        border: active ? "1px solid var(--border-card)" : "1px solid transparent",
       }}
     >
       <div className="flex items-center justify-between gap-3">
@@ -86,7 +86,7 @@ function SnippetRow({ snippet, active, onClick }) {
         </h3>
         <span
           className="shrink-0 font-mono text-[11px] px-2 py-0.5 rounded"
-          style={{ background: "#DCD4C2", color: "#1B4B43" }}
+          style={{ background: "var(--border-card)", color: "#1B4B43" }}
         >
           {snippet.language}
         </span>
@@ -105,7 +105,7 @@ function DetailPanel({ snippet }) {
     return (
       <div
         className="h-full flex flex-col items-center justify-center text-center px-8 py-20 rounded-xl"
-        style={{ background: "#FBF8F1", border: "1px dashed #C7BCA3" }}
+        style={{ background: "var(--bg-card)", border: "1px dashed #C7BCA3" }}
       >
         <Terminal size={22} style={{ color: "#8A8270" }} />
         <p className="mt-3 font-mono text-[13px]" style={{ color: "#8A8270" }}>
@@ -127,7 +127,7 @@ function DetailPanel({ snippet }) {
       <div className="flex items-center gap-2 mb-1">
         <span
           className="font-mono text-[11px] px-2 py-0.5 rounded"
-          style={{ background: "#DCD4C2", color: "#1B4B43" }}
+          style={{ background: "var(--border-card)", color: "#1B4B43" }}
         >
           {snippet.language}
         </span>
@@ -182,7 +182,7 @@ function DetailPanel({ snippet }) {
         <Link
           to={`/learn/${snippet.relatedLesson}`}
           className="mt-4 flex items-center justify-between gap-3 px-4 py-3 rounded-lg transition-transform duration-200 hover:-translate-y-0.5"
-          style={{ background: "#FBF8F1", border: "1px solid #DCD4C2" }}
+          style={{ background: "var(--bg-card)", border: "1px solid var(--border-card)" }}
         >
           <div className="flex items-center gap-3">
             <GraduationCap size={16} style={{ color: "#1B4B43" }} />
@@ -254,7 +254,7 @@ export default function SnippetsPage() {
         {/* ---------------- Sidebar: filters ---------------- */}
         <aside
           className="rounded-xl p-3"
-          style={{ background: "#FBF8F1", border: "1px solid #DCD4C2" }}
+          style={{ background: "var(--bg-card)", border: "1px solid var(--border-card)" }}
         >
           <p
             className="px-3 pt-2 pb-3 font-mono text-[11px] uppercase tracking-widest"
@@ -278,7 +278,7 @@ export default function SnippetsPage() {
         <div>
           <div
             className="flex items-center gap-2 mb-4 px-4 py-2.5 rounded-md"
-            style={{ background: "#FBF8F1", border: "1px solid #DCD4C2" }}
+            style={{ background: "var(--bg-card)", border: "1px solid var(--border-card)" }}
           >
             <Search size={15} style={{ color: "#8A8270" }} />
             <input
@@ -334,12 +334,12 @@ export default function SnippetsPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="block px-5 py-4 rounded-xl transition-transform duration-200 hover:-translate-y-0.5"
-              style={{ background: "#FBF8F1", border: "1px solid #DCD4C2" }}
+              style={{ background: "var(--bg-card)", border: "1px solid var(--border-card)" }}
             >
               <div className="flex items-center justify-between gap-2 mb-1.5">
                 <span
                   className="font-mono text-[11px] px-2 py-0.5 rounded"
-                  style={{ background: "#DCD4C2", color: "#1B4B43" }}
+                  style={{ background: "var(--border-card)", color: "#1B4B43" }}
                 >
                   {res.type}
                 </span>
