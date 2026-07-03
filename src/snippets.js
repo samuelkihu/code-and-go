@@ -7,6 +7,7 @@ const snippets = [
     title: "Debounce a function",
     language: "JavaScript",
     tags: ["functions", "performance", "events"],
+    relatedLesson: "advanced-functions",
     description:
       "Delays running a function until a pause in calls — handy for search inputs or resize handlers.",
     code: `function debounce(fn, delay = 300) {
@@ -27,6 +28,7 @@ const onSearch = debounce((query) => {
     title: "Fetch JSON with error handling",
     language: "JavaScript",
     tags: ["fetch", "async", "api"],
+    relatedLesson: "promises-async-await",
     description:
       "A small wrapper around fetch that throws on non-2xx responses and returns parsed JSON.",
     code: `async function getJSON(url) {
@@ -47,6 +49,7 @@ getJSON("/api/users")
     title: "useDebounce hook",
     language: "React",
     tags: ["hooks", "performance", "state"],
+    relatedLesson: "advanced-functions",
     description:
       "A reusable hook that debounces a piece of state — great for live search fields.",
     code: `import { useState, useEffect } from "react";
@@ -165,6 +168,7 @@ ORDER BY order_count DESC;`,
     title: "Deep clone an object",
     language: "JavaScript",
     tags: ["objects", "cloning"],
+    relatedLesson: "objects-basics",
     description:
       "Makes a full copy of a nested object so edits to the copy never touch the original.",
     code: `function deepClone(obj) {
@@ -183,6 +187,7 @@ console.log(copy.user.name);     // "Grace"`,
     title: "Group an array by a key",
     language: "JavaScript",
     tags: ["arrays", "grouping"],
+    relatedLesson: "data-types-deep-dive",
     description:
       "Turns a flat array into an object of arrays, bucketed by a shared property.",
     code: `function groupBy(items, key) {
@@ -207,6 +212,7 @@ console.log(groupBy(people, "role"));`,
     title: "Save and load from localStorage",
     language: "JavaScript",
     tags: ["storage", "persistence"],
+    relatedLesson: "data-types-deep-dive",
     description:
       "Wraps localStorage with JSON parsing so you can store and retrieve real objects, not just strings.",
     code: `function saveData(key, value) {
@@ -227,6 +233,7 @@ console.log(loadData("preferences"));`,
     title: "useFetch hook",
     language: "React",
     tags: ["hooks", "async", "api"],
+    relatedLesson: "promises-async-await",
     description:
       "A small hook that fetches data on mount and tracks loading and error state for you.",
     code: `import { useState, useEffect } from "react";
@@ -255,6 +262,7 @@ export default useFetch;`,
     title: "useToggle hook",
     language: "React",
     tags: ["hooks", "state"],
+    relatedLesson: "advanced-functions",
     description:
       "A tiny hook for boolean state you flip back and forth — modals, dropdowns, checkboxes.",
     code: `import { useState, useCallback } from "react";
@@ -394,6 +402,7 @@ git stash pop      # bring your changes back`,
     title: "Remove duplicates from an array",
     language: "JavaScript",
     tags: ["arrays", "sets"],
+    relatedLesson: "data-types-deep-dive",
     description:
       "Uses a Set to strip duplicate values while keeping the array's original order.",
     code: `function unique(arr) {
@@ -408,6 +417,7 @@ console.log(unique(["a", "b", "a", "c"]));`,
     title: "Sleep / delay in async code",
     language: "JavaScript",
     tags: ["async", "promises", "timing"],
+    relatedLesson: "promises-async-await",
     description:
       "A promise-based delay you can await inside an async function — handy for retries, throttling, or simulating latency.",
     code: `function sleep(ms) {
@@ -427,6 +437,7 @@ demo();`,
     title: "Format a number as currency",
     language: "JavaScript",
     tags: ["numbers", "formatting", "intl"],
+    relatedLesson: "data-types-deep-dive",
     description:
       "Uses the built-in Intl API to format numbers as locale-aware currency, no manual string building required.",
     code: `const formatter = new Intl.NumberFormat("en-US", {
@@ -442,6 +453,7 @@ console.log(formatter.format(4));`,
     title: "Chunk an array into groups",
     language: "JavaScript",
     tags: ["arrays", "pagination"],
+    relatedLesson: "data-types-deep-dive",
     description:
       "Splits a flat array into smaller arrays of a fixed size — useful for pagination or batch processing.",
     code: `function chunk(arr, size) {
@@ -459,6 +471,7 @@ console.log(chunk([1, 2, 3, 4, 5, 6, 7], 3));`,
     title: "useClickOutside hook",
     language: "React",
     tags: ["hooks", "events", "dropdown"],
+    relatedLesson: "advanced-functions",
     description:
       "Detects a click outside a referenced element — the standard pattern for closing dropdowns and modals.",
     code: `import { useEffect } from "react";
@@ -482,6 +495,7 @@ export default useClickOutside;`,
     title: "useLocalStorage hook",
     language: "React",
     tags: ["hooks", "storage", "persistence"],
+    relatedLesson: "data-types-deep-dive",
     description:
       "State that automatically persists to localStorage and rehydrates on reload — a drop-in replacement for useState.",
     code: `import { useState, useEffect } from "react";
@@ -506,6 +520,7 @@ export default useLocalStorage;`,
     title: "useWindowSize hook",
     language: "React",
     tags: ["hooks", "responsive", "events"],
+    relatedLesson: "advanced-functions",
     description:
       "Tracks the browser window's width and height, updating on resize — useful for responsive logic in JS rather than CSS alone.",
     code: `import { useState, useEffect } from "react";
