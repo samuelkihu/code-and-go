@@ -10,7 +10,7 @@ export function ThemeProvider({ children }) {
       return "parchment";
     }
   });
-
+  
   useEffect(() => {
     try {
       localStorage.setItem("codex-theme", themeName);
