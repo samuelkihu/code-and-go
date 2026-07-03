@@ -389,6 +389,305 @@ ORDER BY orders.total DESC;`,
 git checkout main  # switch branches safely
 git stash pop      # bring your changes back`,
   },
+  {
+    id: "js-array-unique",
+    title: "Remove duplicates from an array",
+    language: "JavaScript",
+    tags: ["arrays", "sets"],
+    description:
+      "Uses a Set to strip duplicate values while keeping the array's original order.",
+    code: `function unique(arr) {
+  return [...new Set(arr)];
+}
+
+console.log(unique([1, 2, 2, 3, 1, 4]));
+console.log(unique(["a", "b", "a", "c"]));`,
+  },
+  {
+    id: "js-sleep-async",
+    title: "Sleep / delay in async code",
+    language: "JavaScript",
+    tags: ["async", "promises", "timing"],
+    description:
+      "A promise-based delay you can await inside an async function — handy for retries, throttling, or simulating latency.",
+    code: `function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function demo() {
+  console.log("waiting...");
+  await sleep(300);
+  console.log("done waiting");
+}
+
+demo();`,
+  },
+  {
+    id: "js-format-currency",
+    title: "Format a number as currency",
+    language: "JavaScript",
+    tags: ["numbers", "formatting", "intl"],
+    description:
+      "Uses the built-in Intl API to format numbers as locale-aware currency, no manual string building required.",
+    code: `const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
+console.log(formatter.format(1999.5));
+console.log(formatter.format(4));`,
+  },
+  {
+    id: "js-array-chunk",
+    title: "Chunk an array into groups",
+    language: "JavaScript",
+    tags: ["arrays", "pagination"],
+    description:
+      "Splits a flat array into smaller arrays of a fixed size — useful for pagination or batch processing.",
+    code: `function chunk(arr, size) {
+  const result = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
+}
+
+console.log(chunk([1, 2, 3, 4, 5, 6, 7], 3));`,
+  },
+  {
+    id: "react-useclickoutside",
+    title: "useClickOutside hook",
+    language: "React",
+    tags: ["hooks", "events", "dropdown"],
+    description:
+      "Detects a click outside a referenced element — the standard pattern for closing dropdowns and modals.",
+    code: `import { useEffect } from "react";
+
+function useClickOutside(ref, onOutsideClick) {
+  useEffect(() => {
+    function handleClick(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        onOutsideClick();
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [ref, onOutsideClick]);
+}
+
+export default useClickOutside;`,
+  },
+  {
+    id: "react-uselocalstorage",
+    title: "useLocalStorage hook",
+    language: "React",
+    tags: ["hooks", "storage", "persistence"],
+    description:
+      "State that automatically persists to localStorage and rehydrates on reload — a drop-in replacement for useState.",
+    code: `import { useState, useEffect } from "react";
+
+function useLocalStorage(key, initialValue) {
+  const [value, setValue] = useState(() => {
+    const stored = localStorage.getItem(key);
+    return stored ? JSON.parse(stored) : initialValue;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [key, value]);
+
+  return [value, setValue];
+}
+
+export default useLocalStorage;`,
+  },
+  {
+    id: "react-usewindowsize",
+    title: "useWindowSize hook",
+    language: "React",
+    tags: ["hooks", "responsive", "events"],
+    description:
+      "Tracks the browser window's width and height, updating on resize — useful for responsive logic in JS rather than CSS alone.",
+    code: `import { useState, useEffect } from "react";
+
+function useWindowSize() {
+  const [size, setSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    function handleResize() {
+      setSize({ width: window.innerWidth, height: window.innerHeight });
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return size;
+}
+
+export default useWindowSize;`,
+  },
+  {
+    id: "py-list-comprehension",
+    title: "List comprehensions",
+    language: "Python",
+    tags: ["lists", "syntax"],
+    description:
+      "A compact way to build a new list by transforming and filtering an existing one in a single line.",
+    code: `numbers = [1, 2, 3, 4, 5, 6]
+
+doubled = [n * 2 for n in numbers]
+evens = [n for n in numbers if n % 2 == 0]
+
+print(doubled)
+print(evens)`,
+  },
+  {
+    id: "py-dict-comprehension",
+    title: "Dictionary comprehensions",
+    language: "Python",
+    tags: ["dictionaries", "syntax"],
+    description:
+      "Builds a dictionary in one line from an iterable, the same way a list comprehension builds a list.",
+    code: `words = ["apple", "fig", "banana"]
+
+lengths = {word: len(word) for word in words}
+print(lengths)`,
+  },
+  {
+    id: "py-decorators-basic",
+    title: "A basic decorator",
+    language: "Python",
+    tags: ["functions", "decorators"],
+    description:
+      "Wraps a function to add behavior — here, timing how long it takes to run — without changing the function itself.",
+    code: `import time
+
+def timed(fn):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = fn(*args, **kwargs)
+        print(f"{fn.__name__} took {time.time() - start:.4f}s")
+        return result
+    return wrapper
+
+@timed
+def slow_add(a, b):
+    return a + b
+
+slow_add(2, 3)`,
+  },
+  {
+    id: "css-dark-mode-vars",
+    title: "Dark mode with CSS variables",
+    language: "CSS",
+    tags: ["theming", "variables", "dark mode"],
+    description:
+      "Swaps a set of CSS custom properties based on a class, so components reference variables instead of hardcoded colors.",
+    code: `:root {
+  --bg: #ffffff;
+  --text: #111111;
+}
+
+[data-theme="dark"] {
+  --bg: #111111;
+  --text: #f5f5f5;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}`,
+  },
+  {
+    id: "css-aspect-ratio",
+    title: "Maintain an aspect ratio",
+    language: "CSS",
+    tags: ["layout", "images", "video"],
+    description:
+      "Keeps an element — commonly an image or video container — at a fixed width-to-height ratio as it resizes.",
+    code: `.video-wrapper {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+}
+
+.video-wrapper img,
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}`,
+  },
+  {
+    id: "html-meta-viewport",
+    title: "Responsive viewport meta tag",
+    language: "HTML",
+    tags: ["responsive", "meta", "mobile"],
+    description:
+      "The single line every responsive site needs — without it, mobile browsers render the page zoomed out at desktop width.",
+    code: `<meta name="viewport" content="width=device-width, initial-scale=1" />`,
+  },
+  {
+    id: "html-details-summary",
+    title: "A native collapsible section",
+    language: "HTML",
+    tags: ["accordion", "interactive"],
+    description:
+      "Built-in expand/collapse behavior with no JavaScript required — good for FAQs or optional details.",
+    code: `<details>
+  <summary>What languages does this cover?</summary>
+  <p>JavaScript, React, Python, CSS, HTML, SQL, and Git.</p>
+</details>`,
+  },
+  {
+    id: "sql-update-basics",
+    title: "Update rows conditionally",
+    language: "SQL",
+    tags: ["update", "where"],
+    description:
+      "Changes existing rows that match a condition — always pair UPDATE with WHERE to avoid updating the whole table.",
+    code: `UPDATE orders
+SET status = 'shipped'
+WHERE status = 'processing'
+  AND created_at < NOW() - INTERVAL '2 days';`,
+  },
+  {
+    id: "sql-subquery-basics",
+    title: "Filter with a subquery",
+    language: "SQL",
+    tags: ["subquery", "filtering"],
+    description:
+      "Finds customers who have placed at least one order, using a subquery instead of a join.",
+    code: `SELECT name
+FROM customers
+WHERE id IN (
+  SELECT DISTINCT customer_id FROM orders
+);`,
+  },
+  {
+    id: "git-rename-branch",
+    title: "Rename a branch",
+    language: "Git",
+    tags: ["branches"],
+    description:
+      "Renames the branch you're currently on — useful for fixing a typo or updating a default branch name.",
+    code: `git branch -m new-branch-name
+
+# if the branch is already pushed, update the remote too:
+git push origin -u new-branch-name`,
+  },
+  {
+    id: "git-view-log-graph",
+    title: "View a readable commit graph",
+    language: "Git",
+    tags: ["log", "history"],
+    description:
+      "A compact, one-line-per-commit view of history with branch and merge lines drawn out — much easier to scan than the default log.",
+    code: `git log --oneline --graph --all --decorate`,
+  },
 ];
 
 export default snippets;
