@@ -51,9 +51,9 @@ function IndexCard({ n, label, icon, title, body, cta, onClick }) {
     <div
       className="relative rounded-xl p-7 transition-transform duration-200 hover:-translate-y-1"
       style={{
-        background: "#FBF8F1",
-        border: "1px solid #DCD4C2",
-        boxShadow: "0 1px 0 #DCD4C2, 0 12px 24px -18px rgba(31,36,33,0.35)",
+        background: "var(--bg-card)",
+        border: "1px solid var(--border-card)",
+        boxShadow: "0 1px 0 var(--border-card), 0 12px 24px -18px rgba(31,36,33,0.35)",
       }}
     >
       <CatalogTag n={n} label={label} />
@@ -133,7 +133,7 @@ export default function WelcomePage() {
           <div className="relative mt-9 max-w-sm">
             <div
               className="flex items-center gap-2 px-4 py-2.5 rounded-md"
-              style={{ background: "#FBF8F1", border: "1px solid #DCD4C2" }}
+              style={{ background: "var(--bg-card)", border: "1px solid var(--border-card)" }}
             >
               <Search size={15} style={{ color: "#8A8270" }} />
               <input
@@ -148,7 +148,7 @@ export default function WelcomePage() {
             {query.trim() && (
               <div
                 className="absolute left-0 right-0 mt-2 rounded-md overflow-hidden shadow-lg z-20"
-                style={{ background: "#FBF8F1", border: "1px solid #DCD4C2" }}
+                style={{ background: "var(--bg-card)", border: "1px solid var(--border-card)" }}
               >
                 {results.length === 0 ? (
                   <div className="px-4 py-3 font-mono text-[12px]" style={{ color: "#8A8270" }}>
@@ -163,7 +163,7 @@ export default function WelcomePage() {
                         setQuery("");
                       }}
                       className="w-full flex items-center gap-3 px-4 py-2.5 text-left"
-                      style={{ borderBottom: "1px solid #DCD4C2" }}
+                      style={{ borderBottom: "1px solid var(--border-card)" }}
                     >
                       {r.type === "lesson" ? (
                         <GraduationCap size={14} style={{ color: "#1B4B43" }} className="shrink-0" />
@@ -189,7 +189,7 @@ export default function WelcomePage() {
         <div className="relative">
           <div
             className="absolute -top-4 -left-4 w-full h-full rounded-xl"
-            style={{ background: "#DCD4C2" }}
+            style={{ background: "var(--border-card)" }}
           />
           <div className="relative">
             <CodeChip />
