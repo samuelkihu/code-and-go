@@ -36,6 +36,15 @@ const lessons = [
         content:
           "Every browser has a built-in console (usually opened with F12) where you can run JavaScript directly, inspect errors, and see anything your code logs. It's the single most useful tool for understanding what your code is actually doing.",
       },
+      {
+        type: "code",
+        code: `// This playground works like the browser console —
+// try logging a few different things below.
+console.log("a string");
+console.log(42);
+console.log([1, 2, 3]);
+console.log({ works: true });`,
+      },
     ],
   },
   {
@@ -105,6 +114,16 @@ const lessons = [
           "Comparing values with `<`, `>`, `==`, and `===`. The double-equals loosely converts types before comparing, while triple-equals checks both value and type — which is why `===` is usually the safer default.",
       },
       {
+        type: "code",
+        code: `let age = 30;
+const name = "Ada";
+
+console.log(typeof age, typeof name);
+console.log(age === 30);
+console.log("30" == 30);   // true — loose comparison converts types
+console.log("30" === 30);  // false — strict comparison does not`,
+      },
+      {
         type: "topic",
         title: "Conditional branching: if, '?'",
         content:
@@ -153,6 +172,18 @@ const lessons = [
           "A shorter syntax for writing function expressions, `(params) => expression`, commonly used for small, throwaway functions like the callbacks passed to array methods.",
       },
       {
+        type: "code",
+        code: `function classify(n) {
+  return n % 2 === 0 ? "even" : "odd";
+}
+
+const double = (n) => n * 2;
+
+for (let i = 1; i <= 5; i++) {
+  console.log(i, classify(i), double(i));
+}`,
+      },
+      {
         type: "topic",
         title: "JavaScript specials",
         content:
@@ -177,6 +208,17 @@ const lessons = [
         title: "Debugging in the browser",
         content:
           "Browser developer tools let you pause execution, step through code line by line, and inspect variables at that exact moment — far more powerful than scattering `console.log` everywhere, though that works too for quick checks.",
+      },
+      {
+        type: "code",
+        code: `function total(items) {
+  console.log("items received:", items);
+  const sum = items.reduce((acc, n) => acc + n, 0);
+  console.log("sum calculated:", sum);
+  return sum;
+}
+
+total([10, 20, 30]);`,
       },
       {
         type: "topic",
@@ -247,6 +289,18 @@ const lessons = [
           "A function stored as an object property is called a method. Inside a method, `this` refers to the object it was called on — a frequent source of confusion, especially once functions get passed around or reassigned.",
       },
       {
+        type: "code",
+        code: `const user = {
+  name: "Grace",
+  role: "engineer",
+  introduce() {
+    return \`Hi, I'm \${this.name}, a \${this.role}\`;
+  },
+};
+
+console.log(user.introduce());`,
+      },
+      {
         type: "topic",
         title: "Constructor, operator \"new\"",
         content:
@@ -315,6 +369,14 @@ const lessons = [
           "Built-in methods like `map`, `filter`, and `reduce` transform arrays without writing manual loops, and are usually the clearest way to express what you're doing to a list of data.",
       },
       {
+        type: "code",
+        code: `const numbers = [1, 2, 3, 4, 5];
+
+console.log(numbers.map((n) => n * 2));
+console.log(numbers.filter((n) => n % 2 === 0));
+console.log(numbers.reduce((sum, n) => sum + n, 0));`,
+      },
+      {
         type: "topic",
         title: "Iterables",
         content:
@@ -325,6 +387,16 @@ const lessons = [
         title: "Map and Set",
         content:
           "`Map` is like an object but allows any value (not just strings) as a key and keeps track of insertion order. `Set` stores a collection of unique values, automatically discarding duplicates.",
+      },
+      {
+        type: "code",
+        code: `const uniqueTags = new Set(["js", "css", "js", "html"]);
+console.log([...uniqueTags]); // duplicates removed
+
+const scores = new Map();
+scores.set("Ada", 95);
+scores.set("Grace", 88);
+console.log(scores.get("Ada"));`,
       },
       {
         type: "topic",
@@ -387,6 +459,21 @@ const lessons = [
         title: "Variable scope, closure",
         content:
           "A closure is a function that remembers the variables from where it was created, even after that outer function has finished running. This is what lets you build things like private counters or memoized functions.",
+      },
+      {
+        type: "code",
+        code: `function makeCounter() {
+  let count = 0;
+  return function () {
+    count++;
+    return count;
+  };
+}
+
+const counter = makeCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter()); // 3 — count is remembered between calls`,
       },
       {
         type: "topic",
@@ -462,6 +549,23 @@ const lessons = [
         content:
           "A getter runs custom code when a property is read, and a setter runs code when it's assigned — letting a property look like plain data from the outside while actually computing or validating something underneath.",
       },
+      {
+        type: "code",
+        code: `const person = {
+  firstName: "Ada",
+  lastName: "Lovelace",
+  get fullName() {
+    return \`\${this.firstName} \${this.lastName}\`;
+  },
+  set fullName(value) {
+    [this.firstName, this.lastName] = value.split(" ");
+  },
+};
+
+console.log(person.fullName);
+person.fullName = "Grace Hopper";
+console.log(person.firstName, person.lastName);`,
+      },
     ],
   },
   {
@@ -481,6 +585,21 @@ const lessons = [
         title: "Prototypal inheritance",
         content:
           "Every object can have a link to another object, its prototype, and will fall back to looking there for a property it doesn't have itself. This chain of fallback lookups is how JavaScript shares behavior between objects.",
+      },
+      {
+        type: "code",
+        code: `const animal = {
+  eats: true,
+  describe() {
+    return this.eats ? "eats food" : "doesn't eat";
+  },
+};
+
+const rabbit = Object.create(animal);
+rabbit.jumps = true;
+
+console.log(rabbit.eats);       // inherited from animal
+console.log(rabbit.describe()); // method inherited too`,
       },
       {
         type: "topic",
@@ -519,6 +638,26 @@ const lessons = [
         title: "Class basic syntax",
         content:
           "A `class` bundles together a constructor and a set of methods that every instance will share, offering a cleaner way to write the same patterns constructor functions and prototypes handle underneath.",
+      },
+      {
+        type: "code",
+        code: `class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  speak() {
+    return \`\${this.name} makes a sound.\`;
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    return \`\${this.name} barks.\`;
+  }
+}
+
+console.log(new Animal("Generic critter").speak());
+console.log(new Dog("Rex").speak());`,
       },
       {
         type: "topic",
@@ -575,6 +714,22 @@ const lessons = [
         title: "Error handling, \"try...catch\"",
         content:
           "Code that might fail can be wrapped in `try`, with a `catch` block ready to handle whatever goes wrong — letting the rest of your program keep running instead of stopping entirely.",
+      },
+      {
+        type: "code",
+        code: `function parseAge(input) {
+  try {
+    const age = JSON.parse(input);
+    if (typeof age !== "number") throw new Error("Not a number");
+    return age;
+  } catch (err) {
+    console.log("Couldn't parse age:", err.message);
+    return null;
+  }
+}
+
+console.log(parseAge("30"));
+console.log(parseAge("\\"thirty\\""));`,
       },
       {
         type: "topic",
@@ -644,6 +799,20 @@ const lessons = [
         content:
           "Syntax built on top of promises that lets asynchronous code read like ordinary step-by-step code, using `await` to pause until a promise resolves — usually the clearest way to write async logic.",
       },
+      {
+        type: "code",
+        code: `function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function run() {
+  console.log("start");
+  await wait(500);
+  console.log("500ms later");
+}
+
+run();`,
+      },
     ],
   },
   {
@@ -663,6 +832,18 @@ const lessons = [
         title: "Generators",
         content:
           "Declared with `function*`, a generator can pause its execution with `yield` and be resumed later, producing a sequence of values one at a time instead of computing them all at once.",
+      },
+      {
+        type: "code",
+        code: `function* countTo(max) {
+  for (let i = 1; i <= max; i++) {
+    yield i;
+  }
+}
+
+for (const n of countTo(4)) {
+  console.log(n);
+}`,
       },
       {
         type: "topic",
@@ -695,6 +876,19 @@ const lessons = [
         title: "Export and Import",
         content:
           "`export` marks what a file makes available; `import` pulls that into another file. Together, they're how a project's pieces are wired together without cramming everything into a single script.",
+      },
+      {
+        type: "code",
+        code: `// This playground runs one file at a time, so imagine these
+// as two separate files to see the shape of the pattern:
+
+// math.js
+// export function add(a, b) { return a + b; }
+// export const PI = 3.14159;
+
+// app.js
+// import { add, PI } from "./math.js";
+console.log("add(2, 3) would be 5, PI would be 3.14159");`,
       },
       {
         type: "topic",
@@ -733,6 +927,20 @@ const lessons = [
         title: "Currying",
         content:
           "A technique where a function that takes multiple arguments is transformed into a sequence of functions that each take one argument — useful for creating specialized versions of a more general function.",
+      },
+      {
+        type: "code",
+        code: `function multiply(a) {
+  return function (b) {
+    return a * b;
+  };
+}
+
+const double = multiply(2);
+const triple = multiply(3);
+
+console.log(double(5));
+console.log(triple(5));`,
       },
       {
         type: "topic",
